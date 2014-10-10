@@ -9,16 +9,7 @@ J_history = zeros(num_iters, 1);
 
 for iter = 1:num_iters
 
-    %theta 0 Equation
-    derivate0 = (1 / m) * sum((X * theta) - y);
-    theta0 = theta(1, 1) - (alpha * derivate0);
-    
-    %theta 1 Equation
-    derivate1 = (1 / m) * sum(((X * theta) - y) .* X(:, 2));
-    theta1 = theta(2, 1) - (alpha * derivate1);
-    
-    %Return Values
-    theta = [theta0; theta1];
+    theta = theta - ((alpha/m) * X' * (X*theta-y)) ;
 
     % Save the cost J in every iteration    
     J_history(iter) = computeCost(X, y, theta);
